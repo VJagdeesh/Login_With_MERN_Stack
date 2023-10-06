@@ -26,6 +26,14 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.post("/register", (req, res) => {
+  const sql = "INSERT INTO resourcedb VALUES(?,?)";
+  db.query(sql, [req.body.email, req.body.password], (err, data) => {
+    if (err) console.log(err);
+    return res.json(true);
+  });
+});
+
 app.get("/try", (req, res) => {
   return res.send("SUCCESS");
 });
